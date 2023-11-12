@@ -2,13 +2,26 @@
 
 body {
     background-color: white;
-    font-family: "Raleway", sans-serif;
+    font-family: Verdana, Geneva,sans-serif;
     color: #445361;
-    text-align: center;
+    margin: 20px;
 }
+/* Logo and Hearder*/
 .logo{
     text-align: center;
+    font-family: Times New Roman Georgia Garamond;
 }
 .pic{
     height: 90px;
 }
+/* Design for Quiz Section */
+#quiz-container{
+    font-size: 20px;
+    margin-left: 25px;
+}
+.question{
+    padding-bottom: 25px;
+}
+ #result{
+    font-size: 20px;
+ }

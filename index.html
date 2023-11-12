@@ -13,8 +13,35 @@
     <title> Cricket Quiz </title>
 </head>
 <body>
+<!--logo-->
     <h1 class="logo">Cricket Quize
         <img class="pic" src="assets/images/logo.jpeg" alt="logo">
     </h1>
+    <!--id for all question-->
+    <div id="quiz-container">
+        <div class="question">
+            <p>1. Who won the first ever Cricket World Cup in 1975?</p>
+            
+                <input type="radio" name="question1" value="England"> <label for="England"> England</label> <br>
+                <input type="radio" name="question1" value="India"> <label for="India"></label> India</label> <br>
+                <input type="radio" name="question1" value="West-Indies"> <label for="West-Indies"></label> West Indies</label>
+            </div>
+        </div>
+    
+        <div class="question">
+            <p>2. How many ways are there of getting out?</p>
+            
+                <input type="radio" name="question2" value="6"><label for="6"></label> 6</label><br>
+                <input type="radio" name="question2" value="9"><label for="9"></label> 9</label> <br>
+                <input type="radio" name="question2" value="10"> <label for="10"></label>10</label>
+            </div>
+        </div>
+    
+        <button onclick="calculateScore()">Submit Answers</button>
+    
+        <div id="result"></div> 
+    </div>
+
+    
 </body>
 </html>
