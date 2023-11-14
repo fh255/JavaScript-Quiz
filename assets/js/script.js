@@ -25,6 +25,17 @@ function calculateScore(){
         document.getElementById("feedback2").innerHTML = "Please select an answer.";
     }
     
+    // Check answers for question 3
+    let question3 = document.querySelector('input[name= "question3"]:checked');
+    if (question3) {
+        document.getElementById("feedback3").innerHTML = question3.value === "Newzeland" ? "Correct!" : "Incorrect. The correct answer is Newzeland.";
+    }
+    if (question3.value === "Newzeland") {
+        score++;
+    }
+    else {
+        document.getElementById("feedback3").innerHTML = "Please select an answer.";
+    }
 
     // Display the result
     let resultElement = document.getElementById("result");
