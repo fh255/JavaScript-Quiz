@@ -37,6 +37,29 @@ function calculateScore(){
         document.getElementById("feedback3").innerHTML = "Please select an answer.";
     }
 
+      // Check answers for question 4
+    let question4 = document.querySelector('input[name= "question4"]:checked');
+    if (question3) {
+        document.getElementById("feedback4").innerHTML = question4.value === "India" ? "Correct!" : "Incorrect. The correct answer is India.";
+    }
+    if (question4.value === "India") {
+        score++;
+    }
+    else {
+        document.getElementById("feedback4").innerHTML = "Please select an answer.";
+    }
+// Check answers for question 5
+    let question5 = document.querySelector('input[name= "question5"]:checked');
+    if (question5) {
+        document.getElementById("feedback5").innerHTML = question5.value === "Uruguay" ? "Correct!" : "Incorrect. The correct answer is Uruguay.";
+    }
+    if (question5.value === "Uruguay") {
+        score++;
+    }
+    else {
+        document.getElementById("feedback5").innerHTML = "Please select an answer.";
+    }
+
     // Display the result
     let resultElement = document.getElementById("result");
     resultElement.innerHTML = "Your score is: " + score + " out of " + totalQuestions;
