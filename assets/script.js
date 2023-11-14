@@ -3,7 +3,7 @@ function calculateScore(){
     let score=0;
 
     // Check answers for question 1
-    var question1 = document.querySelector('input[name="question1"]:checked');
+    let question1 = document.querySelector('input[name="question1"]:checked');
     if (question1) {
         document.getElementById("feedback1").innerHTML = question1.value === "West-Indies" ? "Correct!" : "Incorrect. The correct answer is West Indies.";
         if (question1.value === "West-Indies") {
@@ -23,7 +23,7 @@ function calculateScore(){
 
 
 // Login Form
-function validateForm() {
+function validatorForm() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
