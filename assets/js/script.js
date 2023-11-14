@@ -1,5 +1,5 @@
 function calculateScore(){
-    let totalQuestion= 5;
+    let totalQuestions= 5;
     let score=0;
 
     // Check answers for question 1
@@ -17,15 +17,15 @@ function calculateScore(){
     
 
     // Display the result
-    var resultElement = document.getElementById("result");
+    let resultElement = document.getElementById("result");
     resultElement.innerHTML = "Your score is: " + score + " out of " + totalQuestions;
 }
 
 
 // Login Form
 function validatorForm() {
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
 
     // Simple validation
     if (username === "" || password === "") {
