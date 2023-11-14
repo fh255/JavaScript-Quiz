@@ -14,6 +14,16 @@ function calculateScore(){
     }
 
     // Check answers for question 2
+    let question2 = document.querySelector('input[name="question2"]:checked');
+    if (question2){
+        document.getElementById("feedback2").innerHTML = question2.value === "10" ? "Correct!" : "Incorrect. The correct answer is 10."
+    }
+    if(question2.value === "10"){
+        score++;
+    }
+    else{
+        document.getElementById("feedback2").innerHTML = "Please select an answer.";
+    }
     
 
     // Display the result
