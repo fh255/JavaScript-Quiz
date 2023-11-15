@@ -1,6 +1,16 @@
 function calculateScore(){
     let totalQuestions= 5;
     let score=0;
+    let nextQuestion();
+    let previousQuestion();
+
+    //next button
+    document.getElementById("next").addEventListener("click" , function(){
+        if score<totalQuestions{
+            score++;
+            nextQuestion();
+        }
+    } )
 
     // Check answers for question 1
     let question1 = document.querySelector('input[name="question1"]:checked');
