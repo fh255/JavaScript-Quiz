@@ -1,90 +1,81 @@
-function calculateScore(){
-    let totalQuestions= 5;
-    let score=0;
-    let nextQuestion();
-    let previousQuestion();
+let activeQuestion=1;
+const userResponse={};
 
-    //next button
-    document.getElementById("next").addEventListener("click" , function(){
-        if score<totalQuestions{
-            score++;
-            nextQuestion();
+
+function storeAnswer() {
+    const options = document.getElementsByName(`q${activeQuestion}`);
+    for (const option of options) {
+        if (option.checked) {
+            userAnswers[`q${activeQuestion}`] = option.value;
+            break;
         }
-    } )
-
-    // Check answers for question 1
-    let question1 = document.querySelector('input[name="question1"]:checked');
-    if (question1) {
-        document.getElementById("feedback1").innerHTML = question1.value === "West-Indies" ? "Correct!" : "Incorrect. The correct answer is West Indies.";
-        if (question1.value === "West-Indies") {
-            score++;
-        }
-    } else {
-        document.getElementById("feedback1").innerHTML = "Please select an answer.";
     }
-
-    // Check answers for question 2
-    let question2 = document.querySelector('input[name="question2"]:checked');
-    if (question2){
-        document.getElementById("feedback2").innerHTML = question2.value === "10" ? "Correct!" : "Incorrect. The correct answer is 10."
-    }
-    if(question2.value === "10"){
-        score++;
-    }
-    else{
-        document.getElementById("feedback2").innerHTML = "Please select an answer.";
-    }
-    
-    // Check answers for question 3
-    let question3 = document.querySelector('input[name= "question3"]:checked');
-    if (question3) {
-        document.getElementById("feedback3").innerHTML = question3.value === "Newzeland" ? "Correct!" : "Incorrect. The correct answer is Newzeland.";
-    }
-    if (question3.value === "Newzeland") {
-        score++;
-    }
-    else {
-        document.getElementById("feedback3").innerHTML = "Please select an answer.";
-    }
-
-      // Check answers for question 4
-    let question4 = document.querySelector('input[name= "question4"]:checked');
-    if (question3) {
-        document.getElementById("feedback4").innerHTML = question4.value === "India" ? "Correct!" : "Incorrect. The correct answer is India.";
-    }
-    if (question4.value === "India") {
-        score++;
-    }
-    else {
-        document.getElementById("feedback4").innerHTML = "Please select an answer.";
-    }
-// Check answers for question 5
-    let question5 = document.querySelector('input[name= "question5"]:checked');
-    if (question5) {
-        document.getElementById("feedback5").innerHTML = question5.value === "Uruguay" ? "Correct!" : "Incorrect. The correct answer is Uruguay.";
-    }
-    if (question5.value === "Uruguay") {
-        score++;
-    }
-    else {
-        document.getElementById("feedback5").innerHTML = "Please select an answer.";
-    }
-
-    // Display the result
-    let resultElement = document.getElementById("result");
-    resultElement.innerHTML = "Your score is: " + score + " out of " + totalQuestions;
 }
 
-
-// Login Form
-function validatorForm() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-
-    // Simple validation
-    if (username === "" || password === "") {
-        alert("Please enter both username and password.");
-    } else {
-        alert("Login successful!");
+function getAnswer() {
+    const chooseAnswer = userAnswers[`q${activeQuestion}`];
+    if (chooseAnswer) {
+        const options = document.getElementsByName(`q${activeQuestion}`);
+        for (const option of options) {
+            option.checked = option.value === chooseAnswer;
+        }
     }
 }
+
+//Code for next Question
+function nextQuestion(){
+    storeAnswer();
+    let activeQuestionElement = document.getElementById(`question${activeQuestion}`);
+    activeQuestionElement.classList.remove('active'); //stop the active question to load for the next step
+    activeQuestion++;
+    if (activeQuestion > 5) {
+        currentQuestion = 5; // Prevent going beyond the last question
+    }
+    let nextQuestionElement = document.getElementById(`question${activeQuestion}`); //add the next question
+    nextQuestionElement.classList.add('active');
+    getAnswer();
+}
+// code for previous question
+function previousQuestion() {
+    storeAnswer();
+    const activeQuestionElement = document.getElementById(`question${activeQuestion}`);
+    activeQuestionElement.classList.remove('active');
+
+    activeQuestion--;
+    if (activeQuestion < 1) {
+        activeQuestion = 1; // Prevent going before the first question
+    }
+
+    const previousQuestionElement = document.getElementById(`question${activeQuestion}`);
+    previousQuestionElement.classList.add('active');
+    getAnswer();
+}
+
+function calculateResults() {
+    storeAnswer();
+
+    const correctAnswers = {
+        ques1: 'West-Indies',
+        ques2: '10',
+        ques3: 'Newzeland',
+        ques4: 'India',
+            ques5: 'Uruguay',
+    };
+
+    let score = 0;
+    for (const question in correctAnswers) {
+        if (userAnswers[question] === correctAnswers[question]) {
+            score++;
+        }
+    }
+    const feedBack = `You scored ${score} out of 5`;
+    document.getElementById('feedback').textContent = feedBack;
+    // Hide questions and display results
+    document.querySelectorAll('.question').forEach(question => {
+        question.style.display = 'none';
+    });
+    document.getElementById('results').style.display = 'block';
+}
+
+// Show the first question initially
+document.getElementById('question1').classList.add('active');
